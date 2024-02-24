@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+service FileService {
+    rpc UploadCSV (stream CSVUploadRequest) returns (stream CSVUploadResponse);
+}
+
+message CSVUploadRequest {
+    string file_name = 1;
+    bytes file_content = 2;
+}
+
+message CSVUploadResponse {
+    string message = 1;
+    bool status = 2;
+}

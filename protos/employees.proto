@@ -1,0 +1,37 @@
+syntax="proto3";
+
+service EmployeeService { 
+  rpc GetEmployee(EmployeeRequest) returns (EmployeeResponse) {}
+  // rpc GetAllEmployees(Empty) returns (EmployeeList) {}
+  // rpc AddEmployee(Employee) returns (EmployeeResponse) {}
+}
+
+message Empty {}
+
+message EmployeeRequest {
+  int32 id=1;
+}
+
+message EmployeeResponse {
+  Employee employee=1;
+}
+
+message EmployeeList {
+  repeated Employee employees=1;
+}
+
+message Employee {
+  int32 id=1;
+  string first_name=2;
+  string last_name=3;
+  bool is_retired=4;
+  repeated string previous_employers=6; // Leave empty if unknown
+  enum MaritalStatus  {
+    SINGLE=0;
+    MARRIED=1;
+    DIVORCED=2;
+    OTHER=3;
+  }
+  MaritalStatus marital_status=7;
+  map<string, string> relatives=8;
+}
